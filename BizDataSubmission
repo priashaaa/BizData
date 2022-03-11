@@ -1,0 +1,22 @@
+def currentage(current_date,current_month,current_year,birth_date,birth_month,birth_year):
+    months=[31,28,31,30,31,30,31,31,30,31,30,31]
+    year = current_year-birth_year
+    month = current_month-birth_month
+    days = current_date-birth_date
+    
+    if((current_year % 400 == 0) or  
+     (current_year % 100 != 0) and  
+     (current_year % 4 == 0)):
+         months[1] = months[1]+1
+
+        
+    #if birthday hasnt happened yet
+    if current_month < birth_month:
+        year -= 1
+        month += 12-1
+    if current_date < birth_date:
+        days= months[current_month-2]-birth_date+current_date
+
+
+    return "Years:",year, "Months:",month, "Days:",days
+print(currentage(21,5,2022,21,5,2000))

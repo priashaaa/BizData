@@ -1,22 +1,25 @@
 def currentage(current_date,current_month,current_year,birth_date,birth_month,birth_year):
+
+    #initializing table with days of months
     months=[31,28,31,30,31,30,31,31,30,31,30,31]
+    
+    #calculating difference between current date and birth date
     year = current_year-birth_year
     month = current_month-birth_month
     days = current_date-birth_date
     
-    if((current_year % 400 == 0) or  
-     (current_year % 100 != 0) and  
-     (current_year % 4 == 0)):
-         months[1] = months[1]+1
+    #checking if current date is a leap year
+    if((current_year % 400 == 0) or (current_year % 100 != 0) and(current_year % 4 == 0)):
+        #change days in February to leap year days
+        months[1] = months[1]+1
 
-        
-    #if birthday hasnt happened yet
+    #if birthday hasn't passed yet
     if current_month < birth_month:
         year -= 1
         month += 12-1
     if current_date < birth_date:
+        #calculates days until a complete month from birth date
         days= months[current_month-2]-birth_date+current_date
-
 
     return "Years:",year, "Months:",month, "Days:",days
 print(currentage(21,5,2022,21,5,2000))
